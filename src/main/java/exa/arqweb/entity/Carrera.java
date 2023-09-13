@@ -38,4 +38,10 @@ public class Carrera {
         this.inscripciones.add(i);
     }
 
+    @Override
+    public String toString() {
+        return "\nID: " + id +
+        "\nNombre: " + nombre;
+    }
+
 }
