@@ -5,8 +5,6 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
@@ -14,7 +12,6 @@ import jakarta.persistence.OneToMany;
 public class Estudiante {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Column
@@ -46,11 +43,12 @@ public class Estudiante {
 
     public Estudiante() {
         this.inscripciones = new LinkedList<>();
-        this.esGraduado = false;
     }
     
-    public Estudiante(String nombre, String apellido, int edad, String genero,
-    int dni, String ciudad, int legajo, boolean esGraduado) {
+    public Estudiante
+    (int id, String nombre, String apellido, int edad,
+    String genero, int dni, String ciudad, int legajo, boolean esGraduado) {
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
@@ -58,12 +56,12 @@ public class Estudiante {
         this.dni = dni;
         this.ciudad = ciudad;
         this.legajo = legajo;
-        this.inscripciones = new LinkedList<>();
         this.esGraduado = esGraduado;
+        this.inscripciones = new LinkedList<>();
     }
 
-    public int getId() {
-        return id;
+    public int getID() {
+        return this.id;
     }
 
     public String getNombre() {
@@ -128,6 +126,18 @@ public class Estudiante {
 
     public void setGraduado(boolean esGraduado) {
         this.esGraduado = esGraduado;
+    }
+
+    public void addInscripcion(Inscripcion i) {
+        this.inscripciones.add(i);
+    }
+
+    @Override
+    public String toString() {
+        return "\nID: " + id + "\nNombre: " + nombre + "\nApellido: " + apellido
+        + "\nEdad: " + edad + "\nGénero: " + genero + "\nDNI: "
+        + dni + "\nCiudad: " + ciudad + "\nLegajo: " + legajo +
+        "\nEs graduado: " + esGraduado;
     }
 
 }
