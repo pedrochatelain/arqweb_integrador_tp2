@@ -26,7 +26,7 @@ public class MySQL_FactoryRepository implements FactoryRepository {
 
     @Override
     public Repository<Estudiante> getRepositoryEstudiante() {
-        return null;
+        return new EstudianteRepository(em);
     }
 
     @Override
