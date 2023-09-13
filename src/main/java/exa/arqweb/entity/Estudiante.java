@@ -41,12 +41,25 @@ public class Estudiante {
     @OneToMany(mappedBy = "estudiante")
     private List<Inscripcion> inscripciones;
 
-    @Column    
+    @Column
     private boolean esGraduado;
 
     public Estudiante() {
         this.inscripciones = new LinkedList<>();
         this.esGraduado = false;
+    }
+    
+    public Estudiante(String nombre, String apellido, int edad, String genero,
+    int dni, String ciudad, int legajo, boolean esGraduado) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.edad = edad;
+        this.genero = genero;
+        this.dni = dni;
+        this.ciudad = ciudad;
+        this.legajo = legajo;
+        this.inscripciones = new LinkedList<>();
+        this.esGraduado = esGraduado;
     }
 
     public int getId() {
