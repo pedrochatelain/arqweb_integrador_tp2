@@ -29,11 +29,20 @@ private EntityManager em;
             FROM Estudiante e
             WHERE e.legajo LIKE :lega
         """;
-
         Query query = em.createQuery(statement).setParameter("lega", legajo);
-        
         List<Estudiante> estudiantes = query.getResultList();
         return estudiantes.isEmpty() ? null : estudiantes.get(0);
+    }
+
+    // e) recuperar todos los estudiantes, en base a su género.
+    public List<Estudiante> getByGenero(String genero) {
+        String statement = """
+            SELECT e
+            FROM Estudiante e
+            WHERE e.genero LIKE :gen
+        """;
+        Query query = em.createQuery(statement).setParameter("gen", genero);
+        return query.getResultList();
     }
 
     @Override
