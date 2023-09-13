@@ -1,7 +1,7 @@
 package exa.arqweb.entity;
 
-import exa.arqweb.utils.InscripcionKey;
 import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -32,6 +32,7 @@ public class Inscripcion {
     public Inscripcion(Estudiante e, Carrera c) {
         this.estudiante = e;
         this.carrera = c;
+        this.id = new InscripcionKey(e.getID(), c.getID());
     }
 
     public void setId(InscripcionKey id) {
@@ -64,6 +65,20 @@ public class Inscripcion {
 
     public void setAntiguedad(int antiguedad) {
         this.antiguedad = antiguedad;
+    }
+
+    @Embeddable
+    private class InscripcionKey {
+        @Column(name = "id_estudiante")
+        private int idEstudiante;
+        
+        @Column(name = "id_carrera")
+        private int idCarrera;
+
+        public InscripcionKey(int idEstudiante, int idCarrera) {
+            this.idEstudiante = idEstudiante;
+            this.idCarrera = idCarrera;
+        }
     }
 
 }
