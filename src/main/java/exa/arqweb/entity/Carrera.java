@@ -5,8 +5,6 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
@@ -14,7 +12,6 @@ import jakarta.persistence.OneToMany;
 public class Carrera {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Column
@@ -27,8 +24,18 @@ public class Carrera {
         this.inscripciones = new LinkedList<>();
     }
 
-    public Carrera(String nombre) {
+    public Carrera(int id, String nombre) {
+        this.id = id;
         this.nombre = nombre;
+        this.inscripciones = new LinkedList<>();
+    }
+
+    public int getID() {
+        return this.id;
+    }
+
+    public void addInscripcion(Inscripcion i) {
+        this.inscripciones.add(i);
     }
 
 }
