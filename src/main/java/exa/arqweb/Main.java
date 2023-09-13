@@ -2,7 +2,6 @@ package exa.arqweb;
 
 import exa.arqweb.entity.Carrera;
 import exa.arqweb.entity.Estudiante;
-import exa.arqweb.entity.Inscripcion;
 import exa.arqweb.repository.CarreraRepository;
 import exa.arqweb.repository.EstudianteRepository;
 import exa.arqweb.repository.InscripcionRepository;
@@ -32,10 +31,9 @@ public class Main {
         Carrera c = new Carrera(1, "TUDAI");
         carreraRepository.add(c);
 
-        // Creo inscripcion y la agrego a la db
+        // Matriculo al estudiante "e" en la carrera "c"
         InscripcionRepository inscripcionRepository = (InscripcionRepository) FactoryRepository.mysql().getRepositoryInscripcion();
-        Inscripcion i = new Inscripcion(e, c);
-        inscripcionRepository.add(i);
+        inscripcionRepository.matricular(e, c);
         
     }
 
