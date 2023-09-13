@@ -2,31 +2,41 @@ package exa.arqweb;
 
 import exa.arqweb.entity.Carrera;
 import exa.arqweb.entity.Estudiante;
+import exa.arqweb.entity.Inscripcion;
+import exa.arqweb.repository.CarreraRepository;
+import exa.arqweb.repository.EstudianteRepository;
+import exa.arqweb.repository.InscripcionRepository;
 import exa.arqweb.repository.interfaces.FactoryRepository;
-import exa.arqweb.repository.interfaces.Repository;
 
 public class Main {
 
     public static void main( String[] args ) {
 
-        // Repository<Carrera> repositoryCarrera = FactoryRepository.mysql().getRepositoryCarrera();
-        // repositoryCarrera.add(new Carrera("lapendejada"));
-
         // Creo estudiante y lo agrego a la db
-        Repository<Estudiante> repositoryEstudiante = FactoryRepository.mysql().getRepositoryEstudiante();
+        EstudianteRepository repositoryEstudiante = (EstudianteRepository) FactoryRepository.mysql().getRepositoryEstudiante();
         Estudiante e = new Estudiante(
+            192,
             "John", 
             "Doe", 
             40, 
             "Male", 
             2020202, 
             "London", 
-            3993,
-            true
+            3,
+            false
         );
-        
         repositoryEstudiante.add(e);
 
+        // Creo carrera y la agrego a la db
+        CarreraRepository carreraRepository = (CarreraRepository) FactoryRepository.mysql().getRepositoryCarrera();
+        Carrera c = new Carrera(1, "TUDAI");
+        carreraRepository.add(c);
+
+        // Creo inscripcion y la agrego a la db
+        InscripcionRepository inscripcionRepository = (InscripcionRepository) FactoryRepository.mysql().getRepositoryInscripcion();
+        Inscripcion i = new Inscripcion(e, c);
+        inscripcionRepository.add(i);
+        
     }
 
 }
