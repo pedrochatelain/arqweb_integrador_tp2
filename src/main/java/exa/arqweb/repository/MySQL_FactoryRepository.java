@@ -31,7 +31,7 @@ public class MySQL_FactoryRepository implements FactoryRepository {
 
     @Override
     public Repository<Inscripcion> getRepositoryInscripcion() {
-        return null;
+        return new InscripcionRepository(em);
     }
 
     public static FactoryRepository getInstance() {
