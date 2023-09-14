@@ -2,7 +2,7 @@ package exa.arqweb.repository;
 
 import exa.arqweb.entity.Carrera;
 import exa.arqweb.entity.Estudiante;
-import exa.arqweb.entity.Inscripcion;
+import exa.arqweb.entity.CarreraEstudiante;
 import exa.arqweb.repository.interfaces.FactoryRepository;
 import exa.arqweb.repository.interfaces.Repository;
 import jakarta.persistence.EntityManager;
@@ -30,8 +30,8 @@ public class MySQL_FactoryRepository implements FactoryRepository {
     }
 
     @Override
-    public Repository<Inscripcion> getRepositoryInscripcion() {
-        return new InscripcionRepository(em);
+    public Repository<CarreraEstudiante> getRepositoryCarreraEstudiante() {
+        return new CarreraEstudianteRepository(em);
     }
 
     public static FactoryRepository getInstance() {

@@ -36,7 +36,7 @@ public class Estudiante {
     private int legajo;
 
     @OneToMany(mappedBy = "estudiante")
-    private List<Inscripcion> inscripciones;
+    private List<CarreraEstudiante> inscripciones;
 
     @Column
     private boolean esGraduado;

@@ -18,7 +18,7 @@ public class Carrera {
     private String nombre;
 
     @OneToMany(mappedBy = "carrera")
-    private List<Inscripcion> inscripciones;
+    private List<CarreraEstudiante> inscripciones;
 
     public Carrera() {
         this.inscripciones = new LinkedList<>();
@@ -34,7 +34,7 @@ public class Carrera {
         return this.id;
     }
 
-    public void addInscripcion(Inscripcion i) {
+    public void addInscripcion(CarreraEstudiante i) {
         this.inscripciones.add(i);
     }
 
