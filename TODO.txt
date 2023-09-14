@@ -5,8 +5,6 @@ PREGUNTAS A RESOLVER:
 
 - ¿Está bien estructurado el proyecto?
 
-- ¿Están bien los diagramas?
-
 - ¿Está bien decidir nosotros qué parametros tienen los servicios? Es decir:
 En la clase "InscripcionRepository" hay un metodo "matricular" que tiene como parametro dos
 int que representan "id_estudiante" y "id_carrera", pero por ahí no está bien y debería ser algo
@@ -16,4 +14,6 @@ como "matricular(Estudiante e, Carrera c)"
 
 COSAS QUE FALTAN HACER:
 
-el ejercicio 3 (seguramente haya que implementar algun DTO)
+- el ejercicio 3 (seguramente haya que implementar algun DTO)
+- actualizar diagramas
+- las consultas que se hacen sobre estudiantes deben checkear que NO SEAN GRADUADOS
