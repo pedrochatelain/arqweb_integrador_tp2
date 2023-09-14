@@ -15,11 +15,11 @@ public class InscripcionRepository implements Repository<Inscripcion> {
     }
 
     // b) matricular un estudiante en una carrera
-    public void matricular(int id_estudiante, int id_carrera) {
+    public void matricular(int id_estudiante, int id_carrera, int anio_inscripcion) {
         em.getTransaction().begin();
         Estudiante estudiante = em.find(Estudiante.class, id_estudiante);
         Carrera carrera = em.find(Carrera.class, id_carrera);
-        Inscripcion ins = new Inscripcion(estudiante, carrera);
+        Inscripcion ins = new Inscripcion(estudiante, carrera, anio_inscripcion);
         em.persist(ins);
         em.getTransaction().commit();
     }
