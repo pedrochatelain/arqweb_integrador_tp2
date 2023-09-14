@@ -1,0 +1,19 @@
+PREGUNTAS A RESOLVER:
+
+- El ejercicio 2c dice: "recuperar todos los estudiantes, y especificar algún criterio de ordenamiento simple"
+¿Está bien agregar solamente un criterio de búsqueda por nombre? ¿O hace faltan más?
+
+- ¿Está bien estructurado el proyecto?
+
+- ¿Están bien los diagramas?
+
+- ¿Está bien decidir nosotros qué parametros tienen los servicios? Es decir:
+En la clase "InscripcionRepository" hay un metodo "matricular" que tiene como parametro dos
+int que representan "id_estudiante" y "id_carrera", pero por ahí no está bien y debería ser algo
+como "matricular(Estudiante e, Carrera c)"
+
+---------------------------------------------------------------------------
+
+COSAS QUE FALTAN HACER:
+
+el ejercicio 3 (seguramente haya que implementar algun DTO)
