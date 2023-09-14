@@ -2,7 +2,6 @@ package exa.arqweb.repository;
 
 import java.util.List;
 
-import exa.arqweb.entity.Carrera;
 import exa.arqweb.entity.Estudiante;
 import exa.arqweb.repository.interfaces.Repository;
 import jakarta.persistence.EntityManager;
@@ -16,6 +15,7 @@ private EntityManager em;
         this.em = em;
     }
 
+    // a) dar de alta un estudiante
     @Override
     public void add(Estudiante e) {
         em.getTransaction().begin();

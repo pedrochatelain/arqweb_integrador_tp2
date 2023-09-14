@@ -14,6 +14,7 @@ public class InscripcionRepository implements Repository<Inscripcion> {
         this.em = em;
     }
 
+    // b) matricular un estudiante en una carrera
     public void matricular(int id_estudiante, int id_carrera) {
         em.getTransaction().begin();
         Estudiante estudiante = em.find(Estudiante.class, id_estudiante);
