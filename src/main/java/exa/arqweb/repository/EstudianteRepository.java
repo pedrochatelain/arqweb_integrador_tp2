@@ -2,6 +2,7 @@ package exa.arqweb.repository;
 
 import java.util.List;
 
+import exa.arqweb.entity.Carrera;
 import exa.arqweb.entity.Estudiante;
 import exa.arqweb.repository.interfaces.Repository;
 import jakarta.persistence.EntityManager;
@@ -42,6 +43,19 @@ private EntityManager em;
             WHERE e.genero LIKE :gen
         """;
         Query query = em.createQuery(statement).setParameter("gen", genero);
+        return query.getResultList();
+    }
+
+    // g) recuperar los estudiantes de una determinada carrera, filtrado por ciudad de residencia.
+    public List<Estudiante> getEstudiantes(String carrera, String ciudad) {
+        String statement = """
+            SELECT e
+            FROM Estudiante e JOIN Inscripcion i ON e.id = i.estudiante.id JOIN carrera c ON c.id = i.carrera.id
+            WHERE c.nombre LIKE :carr AND e.ciudad LIKE :ciu
+        """;
+        Query query = em.createQuery(statement)
+            .setParameter("carr", carrera)
+            .setParameter("ciu", ciudad);
         return query.getResultList();
     }
 
