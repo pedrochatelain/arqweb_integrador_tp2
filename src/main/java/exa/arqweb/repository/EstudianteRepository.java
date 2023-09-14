@@ -5,7 +5,7 @@ import java.util.List;
 import exa.arqweb.entity.Estudiante;
 import exa.arqweb.repository.interfaces.Repository;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 
 public class EstudianteRepository implements Repository<Estudiante> {
 
@@ -30,7 +30,7 @@ private EntityManager em;
             FROM Estudiante e
             ORDER BY e.nombre DESC
         """;
-        Query query = em.createQuery(statement);
+        TypedQuery<Estudiante> query = em.createQuery(statement, Estudiante.class);
         return query.getResultList();
     }
 
@@ -41,7 +41,7 @@ private EntityManager em;
             FROM Estudiante e
             WHERE e.legajo LIKE :lega
         """;
-        Query query = em.createQuery(statement).setParameter("lega", legajo);
+        TypedQuery<Estudiante> query = em.createQuery(statement, Estudiante.class).setParameter("lega", legajo);
         List<Estudiante> estudiantes = query.getResultList();
         return estudiantes.isEmpty() ? null : estudiantes.get(0);
     }
@@ -53,7 +53,7 @@ private EntityManager em;
             FROM Estudiante e
             WHERE e.genero LIKE :gen
         """;
-        Query query = em.createQuery(statement).setParameter("gen", genero);
+        TypedQuery<Estudiante> query = em.createQuery(statement, Estudiante.class).setParameter("gen", genero);
         return query.getResultList();
     }
 
@@ -64,7 +64,7 @@ private EntityManager em;
             FROM Estudiante e JOIN Inscripcion i ON e.id = i.estudiante.id JOIN carrera c ON c.id = i.carrera.id
             WHERE c.nombre LIKE :carr AND e.ciudad LIKE :ciu
         """;
-        Query query = em.createQuery(statement)
+        TypedQuery<Estudiante> query = em.createQuery(statement, Estudiante.class)
             .setParameter("carr", carrera)
             .setParameter("ciu", ciudad);
         return query.getResultList();

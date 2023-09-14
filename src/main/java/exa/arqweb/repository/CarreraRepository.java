@@ -5,7 +5,7 @@ import java.util.List;
 import exa.arqweb.entity.Carrera;
 import exa.arqweb.repository.interfaces.Repository;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 
 public class CarreraRepository implements Repository<Carrera> {
 
@@ -34,7 +34,7 @@ public class CarreraRepository implements Repository<Carrera> {
             FROM Carrera c JOIN Inscripcion i ON c.id = i.carrera.id
             GROUP BY c.id
         """;
-        Query query = em.createQuery(statement);
+        TypedQuery<Carrera> query = em.createQuery(statement, Carrera.class);
         return query.getResultList();
     }
     
