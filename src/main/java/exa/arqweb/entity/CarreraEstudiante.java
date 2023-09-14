@@ -1,5 +1,6 @@
 package exa.arqweb.entity;
 
+import exa.arqweb.utils.CarreraEstudianteKey;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EmbeddedId;
@@ -7,12 +8,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
+import jakarta.persistence.Table;
 
 @Entity
-public class Inscripcion {
+@Table(name = "carrera_estudiante")
+public class CarreraEstudiante {
     
     @EmbeddedId
-    private InscripcionKey id;
+    private CarreraEstudianteKey id;
 
     @ManyToOne
     @MapsId("id")
@@ -25,29 +28,27 @@ public class Inscripcion {
     private Carrera carrera;
 
     @Column
-    private int anio_inscripcion;
+    private Integer anio_inscripcion;
 
-    public Inscripcion() {}
+    @Column
+    private Integer anio_graduacion;
 
-    public Inscripcion(Estudiante e, Carrera c, int anio_inscripcion) {
-        this.id = new InscripcionKey(e.getID(), c.getID());
+    public CarreraEstudiante() {}
+
+    public CarreraEstudiante(Estudiante e, Carrera c, int anio_inscripcion) {
+        this.id = new CarreraEstudianteKey(e.getID(), c.getID());
         this.estudiante = e;
         this.carrera = c;
         this.anio_inscripcion = anio_inscripcion;
     }
 
-    @Embeddable
-    private class InscripcionKey {
-        @Column(name = "id_estudiante")
-        private int idEstudiante;
-        
-        @Column(name = "id_carrera")
-        private int idCarrera;
-
-        public InscripcionKey(int idEstudiante, int idCarrera) {
-            this.idEstudiante = idEstudiante;
-            this.idCarrera = idCarrera;
-        }
+    public Integer getAnioInscripcion() {
+        return anio_inscripcion;
     }
+
+    public void setAnioGraduacion(Integer anio_graduacion) {
+        this.anio_graduacion = anio_graduacion;
+    }
+
 
 }
