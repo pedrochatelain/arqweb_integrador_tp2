@@ -25,46 +25,15 @@ public class Inscripcion {
     private Carrera carrera;
 
     @Column
-    private int antiguedad;
+    private int anio_inscripcion;
 
     public Inscripcion() {}
 
-    public Inscripcion(Estudiante e, Carrera c) {
+    public Inscripcion(Estudiante e, Carrera c, int anio_inscripcion) {
+        this.id = new InscripcionKey(e.getID(), c.getID());
         this.estudiante = e;
         this.carrera = c;
-        this.id = new InscripcionKey(e.getID(), c.getID());
-    }
-
-    public void setId(InscripcionKey id) {
-        this.id = id;
-    }
-
-    public InscripcionKey getId() {
-        return id;
-    }
-
-    public Estudiante getEstudiante() {
-        return estudiante;
-    }
-
-    public void setEstudiante(Estudiante estudiante) {
-        this.estudiante = estudiante;
-    }
-
-    public Carrera getCarrera() {
-        return carrera;
-    }
-
-    public void setCarrera(Carrera carrera) {
-        this.carrera = carrera;
-    }
-
-    public int getAntiguedad() {
-        return antiguedad;
-    }
-
-    public void setAntiguedad(int antiguedad) {
-        this.antiguedad = antiguedad;
+        this.anio_inscripcion = anio_inscripcion;
     }
 
     @Embeddable
