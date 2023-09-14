@@ -23,6 +23,17 @@ private EntityManager em;
         em.getTransaction().commit();
     }
 
+    // c) recuperar todos los estudiantes, y especificar algún criterio de ordenamiento simple.
+    public List<Estudiante> getEstudiantesOrderByName() {
+        String statement = """
+            SELECT e
+            FROM Estudiante e
+            ORDER BY e.nombre DESC
+        """;
+        Query query = em.createQuery(statement);
+        return query.getResultList();
+    }
+
     // d) recuperar un estudiante, en base a su número de libreta universitaria.
     public Estudiante getByLegajo(int legajo) {
         String statement = """
