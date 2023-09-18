@@ -1,14 +1,15 @@
-PREGUNTAS A RESOLVER:
+PREGUNTAS:
 
 - El ejercicio 2c dice: "recuperar todos los estudiantes, y especificar algún criterio de ordenamiento simple"
 ¿Está bien agregar solamente un criterio de búsqueda por nombre? ¿O hace faltan más?
+RTA: Se puede elegir cualquier atributo
 
 - ¿Está bien estructurado el proyecto?
 
 - ¿Está bien decidir nosotros qué parametros tienen los servicios? Es decir:
-En la clase "InscripcionRepository" hay un metodo "matricular" que tiene como parametro dos
+En la clase "CarreraEstudianteRepository" hay un metodo "matricular" que tiene como parametro dos
 int que representan "id_estudiante" y "id_carrera", pero por ahí no está bien y debería ser algo
-como "matricular(Estudiante e, Carrera c)"
+como "matricular(Estudiante e, Carrera c)" matricular (EstudianteCarrera ec)
 
 - El ejercicio 2f dice: "recuperar las carreras con estudiantes inscriptos, y ordenar por cantidad de inscriptos"
  ¿debe implementar un dto? Ej: String carrera, int cantInscriptos
@@ -17,11 +18,23 @@ como "matricular(Estudiante e, Carrera c)"
 inscriptos y egresados por año. Se deben ordenar las carreras alfabéticamente, y presentar los años de manera cronológica."
 
 ¿Qué debiera devolver? ¿Una lista de DTO?
+RTA: debería devolver algo así
+    nombre_carrera | anio | cant_inscriptos | cant_graduados
+
+    TUDAI | 2011 | 45 | 10
+    TUDAI | 2008 | 20 |  9
+
+    VETERINARIA | 2011 | 2 | 1
+    VETERINARIA | 2010 | 1 | 0
 
 ---------------------------------------------------------------------------
 
 COSAS QUE FALTAN HACER:
 
-- el ejercicio 3 (seguramente haya que implementar algun DTO)
+- el ejercicio 3 (seguramente haya que implementar algun DTO) además, ver cómo funciona UNION
 - actualizar diagramas
 - corregir ejercicio f
+- los repository deberian tener un atributo EntityManagerFactory y cerrar conexion despues de cada operacion
+- crear interfaces por cada repository
+- revisar MOCKAROO para crear data y probar los servicios (opcional)
+- en la carpeta repository solamente deberian estar los repositorios de cada entidad
