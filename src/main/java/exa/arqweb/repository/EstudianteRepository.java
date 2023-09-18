@@ -61,7 +61,7 @@ private EntityManager em;
     public List<Estudiante> getEstudiantes(String carrera, String ciudad) {
         String statement = """
             SELECT e
-            FROM Estudiante e JOIN Inscripcion i ON e.id = i.estudiante.id JOIN carrera c ON c.id = i.carrera.id
+            FROM Estudiante e JOIN CarreraEstudiante i ON e.id = i.estudiante.id JOIN carrera c ON c.id = i.carrera.id
             WHERE c.nombre LIKE :carr AND e.ciudad LIKE :ciu
         """;
         TypedQuery<Estudiante> query = em.createQuery(statement, Estudiante.class)
