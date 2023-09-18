@@ -10,10 +10,18 @@ En la clase "InscripcionRepository" hay un metodo "matricular" que tiene como pa
 int que representan "id_estudiante" y "id_carrera", pero por ahí no está bien y debería ser algo
 como "matricular(Estudiante e, Carrera c)"
 
+- El ejercicio 2f dice: "recuperar las carreras con estudiantes inscriptos, y ordenar por cantidad de inscriptos"
+ ¿debe implementar un dto? Ej: String carrera, int cantInscriptos
+
+ - El ejercicio 3 dice: "Generar un reporte de las carreras, que para cada carrera incluya información de los
+inscriptos y egresados por año. Se deben ordenar las carreras alfabéticamente, y presentar los años de manera cronológica."
+
+¿Qué debiera devolver? ¿Una lista de DTO?
+
 ---------------------------------------------------------------------------
 
 COSAS QUE FALTAN HACER:
 
 - el ejercicio 3 (seguramente haya que implementar algun DTO)
 - actualizar diagramas
-- las consultas que se hacen sobre estudiantes deben checkear que NO SEAN GRADUADOS
+- corregir ejercicio f
