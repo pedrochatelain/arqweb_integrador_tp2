@@ -38,3 +38,23 @@ COSAS QUE FALTAN HACER:
 - crear interfaces por cada repository
 - revisar MOCKAROO para crear data y probar los servicios (opcional)
 - en la carpeta repository solamente deberian estar los repositorios de cada entidad
+- crear DTO's para las entidades y servicios solicitados
+
+---------------------------------------------------------------------------
+
+Query para el ejercicio 3:
+
+SELECT nombre AS carrera, anio_graduacion AS anio, MAX(cant_inscriptos) AS inscriptos, MAX(cant_graduados) AS graduados
+FROM (
+     SELECT c.nombre, anio_graduacion, COUNT(anio_graduacion) AS cant_graduados, 0 AS cant_inscriptos
+     FROM carrera c LEFT JOIN carrera_estudiante ce ON ce.id_carrera = c.id
+     GROUP BY c.id, anio_graduacion
+     HAVING anio_graduacion IS NOT NULL
+     UNION (
+         SELECT c.nombre, anio_inscripcion, 0, COUNT(anio_inscripcion) AS cant_inscriptos
+         FROM carrera c LEFT JOIN carrera_estudiante ce ON ce.id_carrera = c.id
+         GROUP BY c.id, anio_inscripcion
+     )
+) graduados_inscriptos
+GROUP BY nombre, anio
+ORDER BY nombre, anio;
