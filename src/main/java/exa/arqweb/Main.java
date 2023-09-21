@@ -1,12 +1,12 @@
 package exa.arqweb;
 
+import exa.arqweb.dto.CarrerasConInscriptosDTO;
 import exa.arqweb.entity.Carrera;
 import exa.arqweb.entity.Estudiante;
+import exa.arqweb.factory.FactoryRepository;
 import exa.arqweb.repository.CarreraEstudianteRepository;
 import exa.arqweb.repository.CarreraRepository;
 import exa.arqweb.repository.EstudianteRepository;
-//import exa.arqweb.repository.InscripcionRepository;
-import exa.arqweb.repository.interfaces.FactoryRepository;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class Main {
     public static void main( String[] args ) {
 
         // a) dar de alta estudiantes
-        EstudianteRepository repositoryEstudiante = (EstudianteRepository) FactoryRepository.mysql().getRepositoryEstudiante();
+        EstudianteRepository repositoryEstudiante = FactoryRepository.mysql().getRepositoryEstudiante();
 
         Estudiante e1 = new Estudiante(1, "Peter", "Parker", 30, "Male", 2020202, "New York", 3);
         Estudiante e2 = new Estudiante(2, "John", "Doe", 22, "Male", 343433, "Tandil", 13);
@@ -25,7 +25,7 @@ public class Main {
         repositoryEstudiante.add(e1); repositoryEstudiante.add(e2); repositoryEstudiante.add(e3); repositoryEstudiante.add(e4);
 
         // dar de alta carreras
-        CarreraRepository carreraRepository = (CarreraRepository) FactoryRepository.mysql().getRepositoryCarrera();
+        CarreraRepository carreraRepository = FactoryRepository.mysql().getRepositoryCarrera();
 
         Carrera c1 = new Carrera(1, "TUDAI");
         Carrera c2 = new Carrera(2, "Ingenieria en sistemas");
@@ -44,7 +44,7 @@ public class Main {
         cer.matricular(4, 5, 2008);
 
         // c) recuperar todos los estudiantes, y especificar algún criterio de ordenamiento simple
-        EstudianteRepository er = (EstudianteRepository) FactoryRepository.mysql().getRepositoryEstudiante();
+        EstudianteRepository er = FactoryRepository.mysql().getRepositoryEstudiante();
         List<Estudiante> estudiantesByName = er.getEstudiantesOrderByName();
         System.out.println("\n------------\nEjercicio c: ");
         estudiantesByName.forEach(System.out::println);
@@ -59,12 +59,12 @@ public class Main {
         estudiantesByGenero.forEach(System.out::println);
 
         // f) recuperar las carreras con estudiantes inscriptos, y ordenar por cantidad de inscriptos.
-        List<Carrera> carrerasConInscriptos = carreraRepository.getCarrerasConInscriptos();
+        List<CarrerasConInscriptosDTO> carrerasConInscriptos = carreraRepository.getCarrerasConInscriptos();
         System.out.println("\n------------\nEjercicio f: ");
         carrerasConInscriptos.forEach(System.out::println);
 
         // g) recuperar los estudiantes de una determinada carrera, filtrado por ciudad de residencia.
-        List<Estudiante> estudiantesDeVeterinaria = repositoryEstudiante.getEstudiantes("Veterinaria", "Tandil");
+        List<Estudiante> estudiantesDeVeterinaria = er.getEstudiantes("Veterinaria", "Tandil");
         System.out.println("\n------------\nEjercicio g: ");
         estudiantesDeVeterinaria.forEach(System.out::println);
     }
