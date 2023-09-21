@@ -5,9 +5,6 @@ En la clase "CarreraEstudianteRepository" hay un metodo "matricular" que tiene c
 int que representan "id_estudiante" y "id_carrera", pero por ahí no está bien y debería ser algo
 como "matricular(Estudiante e, Carrera c)" matricular (EstudianteCarrera ec)
 
-- El ejercicio 2f dice: "recuperar las carreras con estudiantes inscriptos, y ordenar por cantidad de inscriptos"
- ¿debe implementar un dto? Ej: String carrera, int cantInscriptos
-
  - El ejercicio 3 debería devolver algo así:
 
     nombre_carrera | anio | cant_inscriptos | cant_graduados
@@ -25,9 +22,6 @@ COSAS QUE FALTAN HACER:
 - el ejercicio 3 (seguramente haya que implementar algun DTO) además, ver cómo funciona UNION
 - actualizar diagramas
 - los repository deberian tener un atributo EntityManagerFactory y cerrar conexion despues de cada operacion
-- crear interfaces por cada repository
-- revisar MOCKAROO para crear data y probar los servicios (opcional)
-- en la carpeta repository solamente deberian estar los repositorios de cada entidad
 - crear DTO's para las entidades y servicios solicitados
 
 ---------------------------------------------------------------------------
@@ -38,8 +32,8 @@ SELECT nombre AS carrera, anio_graduacion AS anio, MAX(cant_inscriptos) AS inscr
 FROM (
      SELECT c.nombre, anio_graduacion, COUNT(anio_graduacion) AS cant_graduados, 0 AS cant_inscriptos
      FROM carrera c LEFT JOIN carrera_estudiante ce ON ce.id_carrera = c.id
+     WHERE anio_graduacion IS NOT NULL
      GROUP BY c.id, anio_graduacion
-     HAVING anio_graduacion IS NOT NULL
      UNION (
          SELECT c.nombre, anio_inscripcion, 0, COUNT(anio_inscripcion) AS cant_inscriptos
          FROM carrera c LEFT JOIN carrera_estudiante ce ON ce.id_carrera = c.id
