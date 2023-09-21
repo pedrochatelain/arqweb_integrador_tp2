@@ -5,29 +5,21 @@ import java.util.List;
 import exa.arqweb.dto.CarrerasConInscriptosDTO;
 import exa.arqweb.dto.InfoCarreraDTO;
 import exa.arqweb.entity.Carrera;
-import exa.arqweb.repository.interfaces.Repository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
-public class CarreraRepository implements Repository<Carrera> {
+public class CarreraRepository {
 
     private EntityManager em;
 
     public CarreraRepository(EntityManager em) {
         this.em = em;
     }
-
-    @Override
     public void add(Carrera c) {
         em.getTransaction().begin();
         em.persist(c);
         em.getTransaction().commit();
-    }
-
-    @Override
-    public void delete(Carrera c) {
-        
     }
 
     // f) recuperar las carreras con estudiantes inscriptos, y ordenar por cantidad de inscriptos.

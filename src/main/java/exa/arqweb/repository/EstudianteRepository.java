@@ -3,11 +3,10 @@ package exa.arqweb.repository;
 import java.util.List;
 
 import exa.arqweb.entity.Estudiante;
-import exa.arqweb.repository.interfaces.Repository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 
-public class EstudianteRepository implements Repository<Estudiante> {
+public class EstudianteRepository {
 
 private EntityManager em;
 
@@ -16,7 +15,6 @@ private EntityManager em;
     }
 
     // a) dar de alta un estudiante
-    @Override
     public void add(Estudiante e) {
         em.getTransaction().begin();
         em.persist(e);
@@ -39,7 +37,7 @@ private EntityManager em;
         String statement = """
             SELECT e
             FROM Estudiante e
-            WHERE e.legajo LIKE :lega
+            WHERE e.legajo = :lega
         """;
         TypedQuery<Estudiante> query = em.createQuery(statement, Estudiante.class).setParameter("lega", legajo);
         List<Estudiante> estudiantes = query.getResultList();
@@ -61,18 +59,13 @@ private EntityManager em;
     public List<Estudiante> getEstudiantes(String carrera, String ciudad) {
         String statement = """
             SELECT e
-            FROM Estudiante e JOIN CarreraEstudiante i ON e.id = i.estudiante.id JOIN carrera c ON c.id = i.carrera.id
+            FROM Estudiante e JOIN CarreraEstudiante i ON e.id = i.estudiante.id JOIN Carrera c ON c.id = i.carrera.id
             WHERE c.nombre LIKE :carr AND e.ciudad LIKE :ciu
         """;
         TypedQuery<Estudiante> query = em.createQuery(statement, Estudiante.class)
             .setParameter("carr", carrera)
             .setParameter("ciu", ciudad);
         return query.getResultList();
-    }
-
-    @Override
-    public void delete(Estudiante e) {
-        
     }
     
 }

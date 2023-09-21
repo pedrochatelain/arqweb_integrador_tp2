@@ -3,11 +3,10 @@ package exa.arqweb.repository;
 import exa.arqweb.entity.Carrera;
 import exa.arqweb.entity.Estudiante;
 import exa.arqweb.entity.CarreraEstudiante;
-import exa.arqweb.repository.interfaces.Repository;
 import exa.arqweb.utils.CarreraEstudianteKey;
 import jakarta.persistence.EntityManager;
 
-public class CarreraEstudianteRepository implements Repository<CarreraEstudiante> {
+public class CarreraEstudianteRepository {
 
     private EntityManager em;
 
@@ -33,15 +32,6 @@ public class CarreraEstudianteRepository implements Repository<CarreraEstudiante
             carreraEstudiante.setAnioGraduacion(anio_graduacion);
         }
         em.getTransaction().commit();
-    }
-
-    @Override
-    public void delete(CarreraEstudiante ins) {
-    }
-
-    @Override
-    public void add(CarreraEstudiante p) {
-     
     }
     
 }
