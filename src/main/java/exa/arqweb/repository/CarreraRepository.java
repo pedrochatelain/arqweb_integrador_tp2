@@ -2,10 +2,12 @@ package exa.arqweb.repository;
 
 import java.util.List;
 
+import exa.arqweb.dto.CarrerasConInscriptosDTO;
 import exa.arqweb.dto.InfoCarreraDTO;
 import exa.arqweb.entity.Carrera;
 import exa.arqweb.repository.interfaces.Repository;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
 public class CarreraRepository implements Repository<Carrera> {
@@ -29,13 +31,14 @@ public class CarreraRepository implements Repository<Carrera> {
     }
 
     // f) recuperar las carreras con estudiantes inscriptos, y ordenar por cantidad de inscriptos.
-    public List<Carrera> getCarrerasConInscriptos() {
+    public List<CarrerasConInscriptosDTO> getCarrerasConInscriptos() {
         String statement = """
-            SELECT c
+            SELECT new exa.arqweb.dto.CarrerasConInscriptosDTO(c.id, c.nombre, COUNT(c.id))
             FROM Carrera c JOIN CarreraEstudiante ce ON c.id = ce.carrera.id
             GROUP BY c.id
+            ORDER BY COUNT(c.id)
         """;
-        TypedQuery<Carrera> query = em.createQuery(statement, Carrera.class);
+        TypedQuery<CarrerasConInscriptosDTO> query = em.createQuery(statement, CarrerasConInscriptosDTO.class);
         return query.getResultList();
     }
 
