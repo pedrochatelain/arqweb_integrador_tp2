@@ -13,9 +13,18 @@ public class CarreraRepository {
 
     private EntityManager em;
 
-    public CarreraRepository(EntityManager em) {
-        this.em = em;
+    private static CarreraRepository instance = null;
+
+    private CarreraRepository() {};
+
+    public static CarreraRepository getInstance(EntityManager em) {
+        if (instance == null) {
+            instance = new CarreraRepository();
+            instance.em = em;
+        }
+        return instance;
     }
+
     public void add(Carrera c) {
         em.getTransaction().begin();
         em.persist(c);

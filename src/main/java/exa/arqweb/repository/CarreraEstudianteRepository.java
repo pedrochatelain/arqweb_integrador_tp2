@@ -9,9 +9,16 @@ import jakarta.persistence.EntityManager;
 public class CarreraEstudianteRepository {
 
     private EntityManager em;
+    private static CarreraEstudianteRepository instance = null;
 
-    public CarreraEstudianteRepository(EntityManager em) {
-        this.em = em;
+    private CarreraEstudianteRepository() {};
+
+    public static CarreraEstudianteRepository getInstance(EntityManager em) {
+        if (instance == null) {
+            instance = new CarreraEstudianteRepository();
+            instance.em = em;
+        }
+        return instance;
     }
 
     // b) matricular un estudiante en una carrera

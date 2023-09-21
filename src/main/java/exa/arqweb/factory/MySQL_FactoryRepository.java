@@ -19,17 +19,17 @@ public class MySQL_FactoryRepository implements FactoryRepository {
 
     @Override
     public CarreraRepository getRepositoryCarrera() {
-        return new CarreraRepository(em);
+        return CarreraRepository.getInstance(em);
     }
 
     @Override
     public EstudianteRepository getRepositoryEstudiante() {
-        return new EstudianteRepository(em);
+        return EstudianteRepository.getInstance(em);
     }
 
     @Override
     public CarreraEstudianteRepository getRepositoryCarreraEstudiante() {
-        return new CarreraEstudianteRepository(em);
+        return CarreraEstudianteRepository.getInstance(em);
     }
 
     public static FactoryRepository getInstance() {

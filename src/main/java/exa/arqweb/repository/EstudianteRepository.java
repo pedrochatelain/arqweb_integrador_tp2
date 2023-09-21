@@ -10,8 +10,16 @@ public class EstudianteRepository {
 
 private EntityManager em;
 
-    public EstudianteRepository(EntityManager em) {
-        this.em = em;
+    private static EstudianteRepository instance = null;
+
+    private EstudianteRepository() {};
+
+    public static EstudianteRepository getInstance(EntityManager em) {
+        if (instance == null) {
+            instance = new EstudianteRepository();
+            instance.em = em;
+        }
+        return instance;
     }
 
     // a) dar de alta un estudiante
