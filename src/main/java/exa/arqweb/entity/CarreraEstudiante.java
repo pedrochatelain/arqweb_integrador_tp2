@@ -1,16 +1,20 @@
 package exa.arqweb.entity;
 
+import exa.arqweb.dto.InfoCarreraDTO;
 import exa.arqweb.utils.CarreraEstudianteKey;
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
+@SqlResultSetMapping(
+        name = "BookAuthorMapping",
+        classes = @ConstructorResult(
+                targetClass = InfoCarreraDTO.class,
+                columns = {
+                        @ColumnResult(name = "carrera"),
+                        @ColumnResult(name = "anio", type = Long.class),
+                        @ColumnResult(name = "cantInscriptos", type = Long.class),
+                        @ColumnResult(name = "cantEgresados", type = Long.class)}))
+
 @Table(name = "carrera_estudiante")
 public class CarreraEstudiante {
     
