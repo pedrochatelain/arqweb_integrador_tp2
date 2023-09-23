@@ -1,6 +1,5 @@
 package exa.arqweb.entity;
 
-import exa.arqweb.dto.InfoCarreraDTO;
 import exa.arqweb.utils.CarreraEstudianteKey;
 import jakarta.persistence.*;
 

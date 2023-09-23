@@ -11,7 +11,7 @@ public class CarreraEstudianteRepository {
     private EntityManager em;
     private static CarreraEstudianteRepository instance = null;
 
-    private CarreraEstudianteRepository() {};
+    private CarreraEstudianteRepository() {}
 
     public static CarreraEstudianteRepository getInstance(EntityManager em) {
         if (instance == null) {
