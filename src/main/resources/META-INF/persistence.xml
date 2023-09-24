@@ -7,6 +7,7 @@
     <persistence-unit name="mysql">
         <description>no description</description>
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <mapping-file>META-INF/info_carrera_dto_mapping.xml</mapping-file>
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="update"/> 
             <!-- database connection -->

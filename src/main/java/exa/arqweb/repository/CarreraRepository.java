@@ -63,7 +63,7 @@ public class CarreraRepository {
             GROUP BY nombre, anio
             ORDER BY nombre, anio
         """;
-        Query query = em.createNativeQuery(statement, "InfoCarreraMappingXML");
+        Query query = em.createNativeQuery(statement, "info_carrera_dto_mapping_xml");
         return query.getResultList();
     }
 
