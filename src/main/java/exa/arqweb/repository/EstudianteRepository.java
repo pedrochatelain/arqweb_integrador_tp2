@@ -12,7 +12,7 @@ private EntityManager em;
 
     private static EstudianteRepository instance = null;
 
-    private EstudianteRepository() {};
+    private EstudianteRepository() {}
 
     public static EstudianteRepository getInstance(EntityManager em) {
         if (instance == null) {

@@ -5,7 +5,6 @@ import java.util.List;
 import exa.arqweb.dto.CarrerasConInscriptosDTO;
 import exa.arqweb.dto.InfoCarreraDTO;
 import exa.arqweb.entity.Carrera;
-import exa.arqweb.entity.CarreraEstudiante;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
@@ -16,7 +15,7 @@ public class CarreraRepository {
 
     private static CarreraRepository instance = null;
 
-    private CarreraRepository() {};
+    private CarreraRepository() {}
 
     public static CarreraRepository getInstance(EntityManager em) {
         if (instance == null) {
@@ -62,8 +61,9 @@ public class CarreraRepository {
                  )
             ) graduados_inscriptos
             GROUP BY nombre, anio
-            ORDER BY nombre, anio        """;
-        Query query = em.createNativeQuery(statement, "InfoCarreraMappingXML");
+            ORDER BY nombre, anio
+        """;
+        Query query = em.createNativeQuery(statement, "info_carrera_dto_mapping_xml");
         return query.getResultList();
     }
 
