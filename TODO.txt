@@ -1,4 +1,2 @@
 - probar los servicios uno x uno
-- actualizar diagramas
-- crear metodo "matricular(CarreraEstudiante ce)"
 - borrar archivo "todo" cuando finalice el proyecto
