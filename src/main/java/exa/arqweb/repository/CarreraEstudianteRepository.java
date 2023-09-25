@@ -31,6 +31,12 @@ public class CarreraEstudianteRepository {
         em.getTransaction().commit();
     }
 
+    public void matricular(CarreraEstudiante ce) {
+        em.getTransaction().begin();
+        em.persist(ce);
+        em.getTransaction().commit();
+    }
+
     public void graduar(int id_estudiante, int id_carrera, int anio_graduacion) {
         em.getTransaction().begin();
         CarreraEstudianteKey key = new CarreraEstudianteKey(id_estudiante, id_carrera);
