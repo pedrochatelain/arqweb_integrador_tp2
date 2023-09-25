@@ -1,2 +1,0 @@
-- probar los servicios uno x uno
-- borrar archivo "todo" cuando finalice el proyecto
